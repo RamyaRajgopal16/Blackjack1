@@ -11,6 +11,8 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
+ * Deck of cards.
+ *
  * Created by ramya on 10/11/2017.
  */
 public class Deck {
@@ -31,6 +33,9 @@ public class Deck {
         shuffleDeck();
     }
 
+    /**
+     * Simulating shuffling of cards
+     */
     private void shuffleDeck() {
         // we need it mutable and the list provided by Arrays is Immutable
         List<CARD> allCards = new ArrayList(Arrays.asList(CARD.values()));
@@ -43,13 +48,19 @@ public class Deck {
         }
     }
 
-
+    /**
+     * Draw one card
+     * @return CARD
+     */
     public CARD draw() {
         return deck.pop();
     }
 
 
-
+    /**
+     * Static class for building a deck from filePath if argument provided
+     *
+     */
     public static class Builder {
 
         Stack<CARD> deck=null;
@@ -58,6 +69,12 @@ public class Deck {
             return new Deck.Builder();
         }
 
+        /**
+         * deck created from the file path provided
+         * @param filePath
+         * @return
+         * @throws IOException
+         */
         public  Builder fromFilePath(String filePath) throws IOException {
             Scanner scanner=null;
             File file = new File(filePath);
@@ -79,11 +96,10 @@ public class Deck {
             return this;
         }
 
-        public Builder fromStack(Stack stack) {
-            this.deck = stack;
-            return this;
-        }
-
+        /**
+         * Validate the deck . For uniqueness, number of cards
+         * @return Builder
+         */
         public  Builder validate() {
             if (deck==null) {
                 return this;
@@ -102,6 +118,10 @@ public class Deck {
 
         }
 
+        /**
+         * If deck isnt intialized build a new one
+         * @return Deck
+         */
         public  Deck build() {
             return deck==null? new Deck():new Deck(deck);
         }
@@ -109,6 +129,10 @@ public class Deck {
 
     }
 
+    /**
+     * Overload toSTring method to make display easier
+     * @return
+     */
     public String toString() {
         String toString = deck.stream().map(t->{return t.toString()+", ";}).reduce("", (t,q)->{return t+q;});
         if (!toString.isEmpty()) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Saves and stores all information regarding hand of a player.
  * Created by ramya on 10/11/2017.
  */
 public class Hand {

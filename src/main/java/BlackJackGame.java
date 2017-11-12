@@ -1,23 +1,31 @@
 package main.java;
 
 /**
+ * The game in itself.
+ *
  * Created by ramya on 10/11/2017.
  */
 public class BlackJackGame {
 
+    public static final int CAN_DRAW = 17;
     Player dealer = null;
     Player sam = null;
     Deck deck =  null;
     Player winner = null;
     public static final int BlackJackScore = 21;
 
-    //Check for null
+
     public BlackJackGame(Player sam,Player dealer,Deck deck) {
         this.sam = sam;
         this.dealer = dealer;
         this.deck = deck;
     }
 
+    /**
+     * The first round. We check if any one has blackjackscore.
+     * Or if equal is it more than blackjackScore.
+     * And set the winner if so
+     */
     private void playFirstRound() {
 
         sam.drawACard(deck);
@@ -34,8 +42,7 @@ public class BlackJackGame {
             winner = dealer;
         }
 
-        //Maybe there's something I don't get in the game
-        //what is the difference between 22 and > 21?
+
         if(samScore > BlackJackScore) {
             winner = dealer;
         } else if (dealersScore > BlackJackScore) {
@@ -43,6 +50,9 @@ public class BlackJackGame {
         }
     }
 
+    /**
+     * The second round  continues if no winner in first round
+     */
     private void playSecondRound() {
         if (sam.hasEmptyHand() || dealer.hasEmptyHand()) {
             throw new IllegalStateException("You need to invoke round1 first");
@@ -52,9 +62,8 @@ public class BlackJackGame {
             throw new IllegalStateException("The game is already won");
         }
 
-        //I'm no BlackJack pro, but I think you should have a constant for 17,
-        //explaining what's its significancy
-        while(sam.getHandScore() < 17) {
+
+        while(sam.getHandScore() < CAN_DRAW) {
             sam.drawACard(deck);
         }
 
@@ -80,7 +89,11 @@ public class BlackJackGame {
         }
     }
 
-
+    /**
+     * Start the game
+     * @param deck
+     * @return winner
+     */
     public Player play(Deck deck){
         this.deck = deck;
         playFirstRound();

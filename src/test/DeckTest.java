@@ -25,7 +25,7 @@ public class DeckTest {
 
     @Test
     public void initializeDeckFromFile() throws IOException {
-        String filePath = "/Users/ramya/Downloads/Blackjack/src/resources/sampleInput.txt";
+        String filePath = "src/resources/sampleInput.txt";
         Deck.Builder deckBuilder = Deck.Builder.createNew();
         Deck.Builder deck = deckBuilder.fromFilePath(filePath);
         Deck finalDeck = deck.validate().build();

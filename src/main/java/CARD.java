@@ -1,6 +1,7 @@
 package main.java;
 
 /**
+ * An enum for all the cards
  * Created by ramya on 10/11/2017.
  */
 public enum CARD {
@@ -11,7 +12,7 @@ public enum CARD {
 
     private int points;
 
-    private CARD(int points) {
+    CARD(int points) {
         this.points = points;
     }
 
