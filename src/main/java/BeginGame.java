@@ -25,7 +25,6 @@ public class BeginGame {
             throw new IllegalArgumentException("Expected at most one argument");
         }
 
-        System.out.println("/********** Begin Blackjack Game **********/");
         Deck deck = deckBuilder.validate().build();
         Player dealer = new Player("dealer");
         Player sam = new Player("sam");
